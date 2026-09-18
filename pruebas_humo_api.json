@@ -8,11 +8,32 @@
   "item": [
     {
       "name": "New Request",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Verificar que la respuesta sea 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"Verificar que el tiempo de respuesta sea menor a 1000ms\", function () {\r\n    pm.expect(pm.response.responseTime).to.be.below(1000);\r\n});\r\n\r\npm.test(\"Verificar que el body no esté vacío\", function () {\r\n    pm.expect(pm.response.text().length).to.be.greaterThan(0);\r\n});\r\n\r\npm.test(\"Verificar que exista el header Content-Type\", function () {\r\n    pm.response.to.have.header(\"Content-Type\");\r\n});\r\n\r\npm.test(\"Verificar tamaño de respuesta razonable\", function () {\r\n    pm.expect(pm.response.responseSize).to.be.below(100000);\r\n});\r\n"
+            ]
+          }
+        }
+      ],
       "request": {
         "method": "GET",
         "header": [],
         "url": {
-          "raw": ""
+          "raw": "https://buggy.justtestit.org/make/ckl2phsabijs71623vk0",
+          "protocol": "https",
+          "host": [
+            "buggy",
+            "justtestit",
+            "org"
+          ],
+          "path": [
+            "make",
+            "ckl2phsabijs71623vk0"
+          ]
         }
       },
       "response": []
